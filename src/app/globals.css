@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/* ── Design system: charcoal / ochre ─────────────────────── */
+@theme {
+  --color-carbon: #1c221e;
+  --color-carbon-2: #2d3631;
+  --color-carbon-3: #3b463f;
+  --color-paper: #eae6df;
+  --color-paper-2: #e1dcd3;
+  --color-paper-3: #c9c1b5;
+  --color-signal: #d4a359;
+  --color-signal-soft: #e2bd7a;
+  --color-graphite: #68736b;
+  --color-ash: #a5aaa0;
+  --color-trace: #b85d43;
+
+  --font-display: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --gutter: clamp(1rem, 3.2vw, 3rem);
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-carbon);
+  color: var(--color-carbon);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-display);
+  background: #151a17;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-signal);
+  color: var(--color-carbon);
+}
+
+/* Custom cursor hides the native one only on fine pointers */
+@media (pointer: fine) {
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@layer components {
+/* Typography helpers */
+.display-xl {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.84;
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-stretch: 118%;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+.serif-i {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+/* Split-text masks */
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+.mask > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+}
+
+/* Marquee */
+.marquee-track {
+  animation: marquee var(--marquee-dur, 40s) linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Pulsing live dot */
+.live-dot {
+  position: relative;
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: ping 1.8s var(--ease-out-expo) infinite;
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* Project visuals pause when off-screen */
+.viz[data-paused="true"] * {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+
+/* ── Project diagram keyframes ─────────────────────────── */
+.viz svg .spin { transform-box: view-box; transform-origin: 50% 50%; animation: v-spin var(--d, 18s) linear infinite; }
+.viz svg .spin-r { transform-box: view-box; transform-origin: 50% 50%; animation: v-spin var(--d, 26s) linear infinite reverse; }
+.viz svg .dash { animation: v-dash 1.6s linear infinite; }
+.viz svg .grow { transform-box: fill-box; transform-origin: 0% 50%; animation: v-grow 5s var(--ease-out-expo) infinite; animation-delay: var(--delay, 0s); }
+.viz svg .sweep { animation: v-sweep var(--d, 5s) linear infinite; }
+.viz svg .fault { animation: v-fault var(--d, 4s) steps(1) infinite; animation-delay: var(--delay, 0s); opacity: 0; }
+.viz svg .bar { transform-box: fill-box; transform-origin: 50% 50%; animation: v-bar var(--d, 1.2s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+.viz svg .pop { opacity: 0; animation: v-pop var(--d, 6s) var(--ease-out-expo) infinite; animation-delay: var(--delay, 0s); }
+.viz svg .scroll-x { animation: v-scroll var(--d, 14s) linear infinite; }
+.viz svg .blink { animation: v-blink 1s steps(1) infinite; }
+@keyframes v-spin { to { transform: rotate(360deg); } }
+@keyframes v-dash { to { stroke-dashoffset: -24; } }
+@keyframes v-grow { 0% { transform: scaleX(0); } 25%, 85% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes v-sweep { from { transform: translateX(0); } to { transform: translateX(var(--sweep, 360px)); } }
+@keyframes v-fault { 0% { opacity: 0; } 70% { opacity: 1; } 90% { opacity: 0; } }
+@keyframes v-bar { 0%, 100% { transform: scaleY(0.18); } 50% { transform: scaleY(1); } }
+@keyframes v-pop { 0% { opacity: 0; transform: translateY(6px); } 8%, 82% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+@keyframes v-scroll { to { transform: translateX(-50%); } }
+@keyframes v-blink { 50% { opacity: 0; } }
