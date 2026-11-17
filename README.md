@@ -1,4 +1,4 @@
-# Lavansh Choubey — Signal / Noise portfolio
+# Lavansh Choubey — Signal / Noise portfoli
 
 A fully static, frontend-only portfolio built with Next.js, Three.js (React Three Fiber), GSAP + ScrollTrigger, Motion (Framer Motion), Lenis and Tailwind CSS.
 
