@@ -15,15 +15,14 @@ This installs everything and starts the dev server at http://localhost:3000. Nee
 | Command | What it does |
 | --- | --- |
 | `npm run dev` | Start the dev server (after the first install) |
-| `npm run build` | Build the static site into `out/` |
-| `npm start` | Serve the built `out/` folder locally |
+| `npm run build` | Build the production Next.js app |
+| `npm start` | Start the production Next.js server locally |
 | `npm run typecheck` | Run TypeScript checks |
 
 ## Deploy
 
-- **Vercel:** import the repo, no settings needed.
-- **Netlify:** build command `npm run build`, publish directory `out`.
-- **Any static host:** upload the `out/` folder.
+- **Vercel:** import the repo with the Next.js framework preset, use `npm run build`, and leave Output Directory empty/default.
+- **Other hosts:** use a Next.js-compatible deployment rather than uploading an `out/` directory.
 
 ## Edit your content
 
