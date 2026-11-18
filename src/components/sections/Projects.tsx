@@ -37,7 +37,7 @@ function ProjectPanel({ p, i }: { p: Project; i: number }) {
           <h3 id={`p-${p.id}`} className="display-xl mt-6 text-[clamp(2.6rem,4.4vw,5.2rem)]">
             {p.name}
           </h3>
-          <p className={`serif-i mt-4 max-w-xl text-[clamp(1.25rem,1.7vw,1.7rem)] leading-tight ${muted}`}>{p.tagline}</p>
+          <p className={`serif mt-4 max-w-xl text-[clamp(1.25rem,1.7vw,1.7rem)] leading-tight ${muted}`}>{p.tagline}</p>
           {p.context && (
             <p className="label mt-3" style={{ color: p.accent }}>
               {p.context}
@@ -188,7 +188,7 @@ export function Projects() {
             <ProjectPanel key={p.id} p={p} i={i} />
           ))}
           <div className="hidden w-[30vw] shrink-0 flex-col justify-center gap-4 pr-[var(--gutter)] lg:flex">
-            <p className="serif-i text-4xl leading-tight">Four more below, and more experiments on GitHub.</p>
+            <p className="serif text-4xl leading-tight">Four more below, and more experiments on GitHub.</p>
             <a
               href="https://github.com/lavansh1306"
               target="_blank"

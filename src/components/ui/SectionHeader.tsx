@@ -24,7 +24,7 @@ export function SectionHeader({ index, label, title, kicker, tone = "light", cla
         <span className={`h-px flex-1 ${rule}`} />
       </div>
       <SplitReveal text={title} className="display-lg text-[clamp(2.6rem,7.4vw,7.5rem)] md:col-span-9" />
-      {kicker ? <p className={`serif-i self-end text-xl leading-snug md:col-span-3 md:text-2xl ${muted}`}>{kicker}</p> : null}
+      {kicker ? <p className={`serif self-end text-xl leading-snug md:col-span-3 md:text-2xl ${muted}`}>{kicker}</p> : null}
     </header>
   );
 }

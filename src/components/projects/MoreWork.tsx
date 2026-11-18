@@ -48,7 +48,7 @@ export function MoreWork({ offset }: { offset: number }) {
                       <Plus size={22} strokeWidth={1.5} />
                     </motion.span>
                   </span>
-                  <span className="serif-i relative col-span-12 text-lg text-graphite transition-colors duration-500 group-hover:text-ash md:col-span-3">
+                  <span className="serif relative col-span-12 text-lg text-graphite transition-colors duration-500 group-hover:text-ash md:col-span-3">
                     {p.kind}
                   </span>
                   <span className="mono relative col-span-12 text-xs text-graphite transition-colors duration-500 group-hover:text-ash md:col-span-3">
@@ -71,7 +71,7 @@ export function MoreWork({ offset }: { offset: number }) {
                   >
                     <div className="grid gap-8 pb-10 pt-2 md:grid-cols-12">
                       <div className="flex flex-col gap-5 md:col-span-6 md:col-start-2">
-                        <p className="serif-i text-2xl leading-tight">{p.tagline}</p>
+                        <p className="serif text-2xl leading-tight">{p.tagline}</p>
                         <dl className="grid gap-4 text-[0.95rem] leading-relaxed">
                           <div>
                             <dt className="label text-graphite">Problem</dt>

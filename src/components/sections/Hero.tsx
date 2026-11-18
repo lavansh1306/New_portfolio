@@ -150,11 +150,11 @@ export function Hero() {
           <div className="grid gap-5 md:grid-cols-12 md:gap-6">
             <div className="hero-rule col-span-full h-px bg-paper/25" />
             <div className="relative md:col-span-7">
-              <p className="hero-statement-text hero-fade serif-i text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">{profile.positioning}</p>
-              <p aria-hidden className="hero-cap-0 serif-i invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
+              <p className="hero-statement-text hero-fade serif text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">{profile.positioning}</p>
+              <p aria-hidden className="hero-cap-0 serif invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
                 Most of what I build starts with a practical problem.
               </p>
-              <p aria-hidden className="hero-cap-1 serif-i invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
+              <p aria-hidden className="hero-cap-1 serif invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
                 This is how I turn it into <span className="text-signal">software people can use.</span>
               </p>
             </div>

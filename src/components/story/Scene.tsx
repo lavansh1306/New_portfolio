@@ -156,7 +156,7 @@ export function Scene({ chapter, length = 2.4, children, onProgress, className =
               {chapter.lines.map((l, i) => (
                 <p
                   key={l}
-                  className={`sc-line serif-i col-start-1 row-start-1 text-[clamp(1.6rem,3.6vw,3.2rem)] leading-[1.05] ${chapter.shape === "sun" ? "text-carbon" : "text-paper"} ${reducedMotion && i > 0 ? "hidden" : ""}`}
+                  className={`sc-line serif col-start-1 row-start-1 text-[clamp(1.6rem,3.6vw,3.2rem)] leading-[1.05] ${chapter.shape === "sun" ? "text-carbon" : "text-paper"} ${reducedMotion && i > 0 ? "hidden" : ""}`}
                 >
                   {l}
                 </p>

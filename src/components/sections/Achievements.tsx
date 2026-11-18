@@ -57,7 +57,7 @@ export function Achievements() {
                   <CountUp to={podium.count} className="display-xl text-[clamp(6rem,11vw,10rem)] leading-[0.78] text-carbon" />
                   <span className="display-xl mt-2 text-[clamp(2.4rem,4vw,4rem)] text-signal">×</span>
                 </span>
-                <span className="serif-i pb-1 text-3xl leading-none">podium finishes</span>
+                <span className="serif pb-1 text-3xl leading-none">podium finishes</span>
               </div>
 
               <figure ref={podiumRef} className="relative mt-8 aspect-[4/3] w-full border border-carbon/15 bg-paper-2" data-cursor-label="Drag">

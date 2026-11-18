@@ -74,7 +74,7 @@ export function Experience() {
         <aside className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <p className="label text-ash">Beyond the code</p>
-            <p className="serif-i mt-4 text-3xl leading-tight">
+            <p className="serif mt-4 text-3xl leading-tight">
               Joined PLACFV’s, SRM’s student placement team, as a volunteer. Now I lead one of its corporate groups.
             </p>
             <ol className="mt-8 flex flex-col gap-0" aria-label="Role progression at PLACFV’s">
@@ -123,7 +123,7 @@ export function Experience() {
                 )}
               </div>
               <h3 className="ch-in display-lg mt-4 text-[clamp(1.9rem,3.6vw,3.4rem)]">{c.org}</h3>
-              <p className="ch-in serif-i mt-1 text-2xl text-signal-soft">{c.role}</p>
+              <p className="ch-in serif mt-1 text-2xl text-signal-soft">{c.role}</p>
               <p className="ch-in mono mt-3 text-xs text-ash">{c.context}</p>
               {c.progression && (
                 <p className="ch-in mono mt-3 flex flex-wrap items-center gap-2 text-xs">

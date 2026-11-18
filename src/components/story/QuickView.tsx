@@ -55,7 +55,7 @@ export function QuickView({ open, onClose }: { open: boolean; onClose: () => voi
               <h2 id="qv-title" className="display-lg text-5xl">
                 {profile.firstName} {profile.lastName}
               </h2>
-              <p className="serif-i mt-2 text-2xl text-graphite">{profile.role}</p>
+              <p className="serif mt-2 text-2xl text-graphite">{profile.role}</p>
               <p className="mono mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
                 <a className="underline underline-offset-4" href={`mailto:${profile.email}`}>
                   {profile.email}

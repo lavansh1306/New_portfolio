@@ -25,7 +25,7 @@ export function Beyond() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.9, delay: (i % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="serif-i text-[6rem] leading-[0.8] text-carbon/15 transition-colors duration-500 group-hover:text-signal">
+            <span className="serif text-[6rem] leading-[0.8] text-carbon/15 transition-colors duration-500 group-hover:text-signal">
               {String(i + 1).padStart(2, "0")}
             </span>
             <div>

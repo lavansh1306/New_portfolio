@@ -121,7 +121,7 @@ export function About() {
                   <span className="label text-graphite">{f.label}</span>
                   <span>
                     <span className="display-lg block text-2xl">{f.value}</span>
-                    <span className="serif-i mt-1 block text-lg text-graphite">{f.note}</span>
+                    <span className="serif mt-1 block text-lg text-graphite">{f.note}</span>
                   </span>
                 </div>
               ))}
@@ -134,7 +134,7 @@ export function About() {
       <section aria-labelledby="signal-title" className="px-[var(--gutter)] pb-28 md:pb-40">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <h3 id="signal-title" className="display-lg max-w-3xl text-[clamp(2rem,4.6vw,4.4rem)]">
-            From problem <span className="serif-i font-normal text-signal">to outcome.</span>
+            From problem <span className="serif font-normal text-signal">to outcome.</span>
           </h3>
           <p className="mono max-w-sm text-sm text-graphite">
             The same approach, again and again: understand the constraint, verify the result, and make the system useful. Hover a row.
