@@ -13,14 +13,15 @@ import { Magnetic } from "@/components/ui/Magnetic";
 
 function ProjectPanel({ p, i }: { p: Project; i: number }) {
   const dark = p.tone === "dark";
-  const ink = dark ? "#f1ede4" : "#111312";
+  const ink = dark ? "#F5F3EF" : "#050606";
+  const accent = dark ? "#C8FF00" : "#050606";
   const muted = dark ? "text-ash" : "text-graphite";
-  const rule = dark ? "border-paper/15" : "border-carbon/15";
+  const rule = dark ? "border-paper/20" : "border-carbon/20";
 
   return (
     <article
       className={`project-panel relative flex w-full shrink-0 flex-col overflow-hidden rounded-md lg:h-[min(80svh,800px)] lg:w-[min(88vw,1320px)] ${
-        dark ? "bg-carbon text-paper" : "bg-paper-2 text-carbon"
+        dark ? "border border-paper/20 bg-carbon text-paper" : "bg-paper-2 text-carbon"
       }`}
       aria-labelledby={`p-${p.id}`}
     >
@@ -28,7 +29,7 @@ function ProjectPanel({ p, i }: { p: Project; i: number }) {
         {/* Text column */}
         <div className="flex flex-col lg:col-span-6">
           <div className={`flex items-center justify-between border-b pb-4 ${rule}`}>
-            <span className="label" style={{ color: p.accent }}>
+            <span className="label" style={{ color: accent }}>
               {String(i + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}
             </span>
             <span className={`label ${muted}`}>{p.kind}</span>
@@ -39,7 +40,7 @@ function ProjectPanel({ p, i }: { p: Project; i: number }) {
           </h3>
           <p className={`serif mt-4 max-w-xl text-[clamp(1.25rem,1.7vw,1.7rem)] leading-tight ${muted}`}>{p.tagline}</p>
           {p.context && (
-            <p className="label mt-3" style={{ color: p.accent }}>
+            <p className="label mt-3" style={{ color: accent }}>
               {p.context}
             </p>
           )}
@@ -55,7 +56,7 @@ function ProjectPanel({ p, i }: { p: Project; i: number }) {
                 <ul className="grid gap-1.5">
                   {p.built.map((b) => (
                     <li key={b} className="flex gap-2">
-                      <span aria-hidden style={{ color: p.accent }}>
+                      <span aria-hidden style={{ color: accent }}>
                         →
                       </span>
                       <span>{b}</span>
@@ -76,7 +77,7 @@ function ProjectPanel({ p, i }: { p: Project; i: number }) {
           <div className={`project-visual relative aspect-[4/3] w-full border ${rule} lg:aspect-auto lg:flex-1`}>
             <span className={`label absolute left-3 top-3 ${muted}`}>Fig. {String(i + 1).padStart(2, "0")} — system overview</span>
             <div className="absolute inset-0 p-6 pt-10">
-              <ProjectVisual kind={p.visual} ink={ink} accent={p.accent} label={`Animated diagram of ${p.name}: ${p.tagline}`} />
+              <ProjectVisual kind={p.visual} ink={ink} accent={accent} label={`Animated diagram of ${p.name}: ${p.tagline}`} />
             </div>
           </div>
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -108,8 +109,8 @@ function ProjectPanel({ p, i }: { p: Project; i: number }) {
                     target="_blank"
                     rel="noreferrer"
                     data-cursor-label="Open"
-                    className="label flex items-center gap-1.5 rounded-full px-4 py-2.5 text-carbon"
-                    style={{ background: p.accent }}
+                    className={`label flex items-center gap-1.5 rounded-full px-4 py-2.5 ${dark ? "text-carbon" : "text-paper"}`}
+                    style={{ background: accent }}
                   >
                     Live <ArrowUpRight size={13} aria-hidden />
                   </a>
@@ -177,7 +178,7 @@ export function Projects() {
   );
 
   return (
-    <section id="work" aria-label="Selected projects" className="relative z-10 bg-paper text-carbon">
+    <section id="work" aria-label="Selected projects" className="relative z-10 bg-carbon text-paper">
       <div className="px-[var(--gutter)] pb-16 pt-28 md:pt-40">
         <SectionHeader index="04" label="Selected work" title="Projects built for real constraints" kicker="A selection of systems, products and experiments with a practical outcome." />
       </div>
@@ -205,10 +206,10 @@ export function Projects() {
           <span className="label tabular-nums">
             <span ref={count}>01</span> / {String(featured.length).padStart(2, "0")}
           </span>
-          <span className="relative h-px flex-1 bg-carbon/15">
+          <span className="relative h-px flex-1 bg-paper/20">
             <span ref={bar} className="absolute inset-0 origin-left scale-x-0 bg-signal" />
           </span>
-          <span className="label text-graphite">Scroll →</span>
+          <span className="label text-ash">Scroll →</span>
         </div>
       </div>
       <MoreWork offset={featured.length} />

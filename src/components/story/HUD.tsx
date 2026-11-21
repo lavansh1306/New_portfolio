@@ -6,15 +6,26 @@ import { story } from "@/content/profile";
 import { ScrollTrigger } from "@/lib/gsap";
 import { useApp } from "@/components/providers/AppProvider";
 import { ScrambleText } from "@/components/ui/ScrambleText";
+import { QuickDock } from "@/components/ui/QuickDock";
 import { QuickView } from "./QuickView";
 
-/** Film-style chapter HUD: progress with chapter ticks, current chapter, chapter menu, quick view. */
+const NAV_ITEMS = [
+  { label: "About", id: "person" },
+  { label: "Skills", id: "toolkit" },
+  { label: "Projects", id: "builds" },
+  { label: "Experience", id: "road" },
+  { label: "Achievements", id: "arena" },
+  { label: "Contact", id: "signal" },
+] as const;
+
+/** Film-style chapter HUD: progress with chapter ticks, direct navigation, chapter menu, quick view. */
 export function HUD() {
   const { ready, scrollTo, setScrollLocked } = useApp();
   const [current, setCurrent] = useState(0);
   const [ticks, setTicks] = useState<number[]>([]);
   const [menu, setMenu] = useState(false);
   const [quick, setQuick] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const bar = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -37,6 +48,7 @@ export function HUD() {
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      setScrolled(window.scrollY > 24);
     };
     measure();
     onScroll();
@@ -73,7 +85,7 @@ export function HUD() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-0 z-50 text-paper mix-blend-difference"
+        className={`fixed inset-x-0 top-0 z-50 text-paper transition-colors duration-300 ${scrolled ? "bg-carbon" : ""}`}
         initial={{ y: -90 }}
         animate={{ y: ready ? 0 : -90 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -86,20 +98,48 @@ export function HUD() {
           ))}
         </div>
 
-        <nav aria-label="Chapters" className="flex items-center justify-between gap-4 px-[var(--gutter)] py-4">
-          <a
-            href="#top"
-            onClick={(e) => {
-              e.preventDefault();
-              go("prologue");
-            }}
-            className="flex items-center gap-3"
-            aria-label="Back to the start"
-          >
-            <span className="display-lg text-xl">LC</span>
-          </a>
+        <nav aria-label="Navigation & Chapters" className="flex items-center justify-between gap-4 px-[var(--gutter)] py-4">
+          <div className="flex items-center gap-6">
+            <a
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                go("prologue");
+              }}
+              className="group flex items-center gap-2"
+              aria-label="Back to the start"
+            >
+              <span className="display-lg text-xl tracking-tight transition-transform duration-300 group-hover:scale-105">LC</span>
+            </a>
 
-          <p className="label hidden items-center gap-3 md:flex" aria-live="polite">
+            {/* Direct desktop navigation (Jakob's Law) */}
+            <div className="hidden lg:flex items-center gap-1 xl:gap-2 border-l border-paper/20 pl-4">
+              {NAV_ITEMS.map((item) => {
+                const isActive = ch.id === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => go(item.id)}
+                    className={`label relative rounded-full px-3 py-1.5 text-[11px] transition-all duration-300 ${
+                      isActive ? "text-paper font-semibold opacity-100" : "opacity-60 hover:opacity-100 hover:bg-paper/10"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="hud-nav-active"
+                        className="absolute inset-0 rounded-full border border-paper/40"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <p className="label hidden items-center gap-3 md:flex lg:hidden" aria-live="polite">
             <span className="opacity-60">Chapter</span>
             <span className="tabular-nums">{ch.num}</span>
             <span className="h-px w-8 bg-paper/60" />
@@ -107,7 +147,12 @@ export function HUD() {
           </p>
 
           <div className="flex items-center gap-2">
-            <button type="button" onClick={() => setQuick(true)} className="label rounded-full border border-paper/50 px-3.5 py-2 transition-colors hover:bg-paper hover:text-carbon sm:px-4">
+            <button
+              type="button"
+              onClick={() => setQuick(true)}
+              aria-label="Open quick resume view"
+              className="label min-h-[44px] rounded-full border border-paper/50 px-3.5 py-2 transition-all hover:bg-paper hover:text-carbon sm:px-4 active:scale-95"
+            >
               Quick view
             </button>
             <button
@@ -115,7 +160,8 @@ export function HUD() {
               onClick={() => setMenu((m) => !m)}
               aria-expanded={menu}
               aria-controls="chapter-menu"
-              className="label rounded-full border border-paper/50 px-3.5 py-2 transition-colors hover:bg-paper hover:text-carbon sm:px-4"
+              aria-label={menu ? "Close menu" : "Open chapters menu"}
+              className="label min-h-[44px] rounded-full border border-paper/50 px-3.5 py-2 transition-all hover:bg-paper hover:text-carbon sm:px-4 active:scale-95"
             >
               {menu ? "Close" : "Chapters"}
             </button>
@@ -158,6 +204,7 @@ export function HUD() {
       </AnimatePresence>
 
       <QuickView open={quick} onClose={() => setQuick(false)} />
+      <QuickDock onOpenQuickView={() => setQuick(true)} />
     </>
   );
 }

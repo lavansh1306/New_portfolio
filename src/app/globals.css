@@ -1,18 +1,24 @@
 @import "tailwindcss";
 
-/* ── Design system: charcoal / ochre ─────────────────────── */
+/* ── Design system: Midnight black / Frost white / Neon lime ───
+   Roles:  midnight #050606 = backgrounds (the priority colour)
+           frost    #F5F3EF = text, lines, cards (most of what sits on top)
+           lime     #C8FF00 = small accents only
+   Tints are made with opacity only, never with extra hues.            */
 @theme {
-  --color-carbon: #1c221e;
-  --color-carbon-2: #2d3631;
-  --color-carbon-3: #3b463f;
-  --color-paper: #eae6df;
-  --color-paper-2: #e1dcd3;
-  --color-paper-3: #c9c1b5;
-  --color-signal: #d4a359;
-  --color-signal-soft: #e2bd7a;
-  --color-graphite: #68736b;
-  --color-ash: #a5aaa0;
-  --color-trace: #b85d43;
+  --color-midnight: #050606;
+  --color-frost: #F5F3EF;
+  --color-lime: #C8FF00;
+
+  --color-carbon: #050606; /* backgrounds + ink on frost cards */
+  --color-carbon-2: #050606;
+  --color-carbon-3: #050606;
+  --color-paper: #F5F3EF; /* text on midnight + frost card surfaces */
+  --color-paper-2: #F5F3EF;
+  --color-paper-3: #F5F3EF;
+  --color-graphite: rgb(5 6 6 / 0.68); /* muted ink on frost cards */
+  --color-ash: rgb(245 243 239 / 0.62); /* muted text on midnight */
+  --color-trace: #C8FF00;
 
   --font-display: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
@@ -22,14 +28,28 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Accent is context-aware: lime on midnight, midnight on frost cards. */
+@theme inline {
+  --color-signal: var(--sig);
+  --color-signal-soft: var(--sig);
+}
+
 :root {
   --gutter: clamp(1rem, 3.2vw, 3rem);
-  color-scheme: light;
+  --sig: #C8FF00;
+  color-scheme: dark;
+}
+.bg-paper,
+.bg-paper-2 {
+  --sig: #050606;
+}
+.bg-carbon {
+  --sig: #C8FF00;
 }
 
 html {
-  background: var(--color-carbon);
-  color: var(--color-carbon);
+  background: var(--color-midnight);
+  color: var(--color-frost);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -48,13 +68,13 @@ html.lenis body {
 
 body {
   font-family: var(--font-display);
-  background: #151a17;
+  background: #050606;
   overflow-x: clip;
 }
 
 ::selection {
-  background: var(--color-signal);
-  color: var(--color-carbon);
+  background: var(--sig);
+  color: var(--color-midnight);
 }
 
 /* Custom cursor hides the native one only on fine pointers */
@@ -66,9 +86,34 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-signal);
+  outline: 2px solid var(--sig);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+@media print {
+  /* Print Optimization: clean format when recruiters print or save PDF */
+  header,
+  nav,
+  canvas,
+  .cursor-dot,
+  aside[aria-label="Quick actions dock"] {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  [role="dialog"] {
+    position: static !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+  }
 }
 
 @layer components {

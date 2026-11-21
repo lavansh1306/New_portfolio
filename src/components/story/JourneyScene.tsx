@@ -83,7 +83,7 @@ export function JourneyScene({ chapterId }: { chapterId: "roots" | "road" }) {
                         initial={{ opacity: 0, y: 40, rotate: 0 }}
                         animate={{ opacity: 1, y: 0, rotate: rot }}
                         transition={{ delay: 0.1 + i * 0.09, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                        className={`absolute top-0 bg-paper p-1.5 pb-7 shadow-[0_18px_40px_rgba(0,0,0,0.45)] ${wide ? "w-[64%]" : "w-[44%]"}`}
+                        className={`absolute top-0 bg-paper p-1.5 pb-7 shadow-[0_18px_40px_rgba(0,0,0,0.6)] ${wide ? "w-[64%]" : "w-[44%]"}`}
                         style={{ left: n === 1 ? "18%" : `${(i * (wide ? 36 : 54)) / (n - 1)}%`, top: wide ? "12%" : 0 }}
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}

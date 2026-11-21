@@ -182,8 +182,8 @@ void main() {
 }
 `;
 
-const PAPER = new THREE.Color("#eae6df");
-const CARBON = new THREE.Color("#1a1d1b");
+const PAPER = new THREE.Color("#F5F3EF");
+const CARBON = new THREE.Color("#F5F3EF");
 const IDX = Object.fromEntries(SHAPES.map((s, i) => [s, i])) as Record<string, number>;
 
 const DIR = new THREE.Vector3();
@@ -241,7 +241,7 @@ function Signal({ reducedMotion }: { reducedMotion: boolean }) {
         uMapZoom: { value: 1 },
         uMapPan: { value: 0 },
         uInk: { value: PAPER.clone() },
-        uSignal: { value: new THREE.Color("#d4a359") },
+        uSignal: { value: new THREE.Color("#C8FF00") },
       },
     });
     return { geometry: g, material: m };

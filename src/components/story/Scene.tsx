@@ -134,12 +134,12 @@ export function Scene({ chapter, length = 2.4, children, onProgress, className =
       style={{ height: reducedMotion ? "100svh" : `${length * 100}svh` }}
     >
       <div className="sticky top-0 h-[100svh] overflow-hidden">
-        <div className="sc-card absolute inset-x-0 top-1/2 -translate-y-1/2 px-[var(--gutter)]">
+        <div className={`sc-card absolute inset-x-0 top-1/2 -translate-y-1/2 px-[var(--gutter)]`}>
           <p className="sc-num label flex items-center gap-3 text-signal">
             <span>Chapter {chapter.num}</span>
             <span className="sc-rule h-px w-16 origin-left bg-signal" />
           </p>
-          <h2 className="sc-title display-xl mt-5 text-[clamp(3.2rem,11vw,11rem)] text-paper" style={{ color: chapter.shape === "sun" ? "var(--color-carbon)" : undefined }}>
+          <h2 className="sc-title display-xl mt-5 text-[clamp(3.2rem,11vw,11rem)] text-paper" >
             {chapter.title.split(" ").map((w, i) => (
               <span key={i} className="mask mr-[0.25em]">
                 <span>{w}</span>
@@ -156,7 +156,7 @@ export function Scene({ chapter, length = 2.4, children, onProgress, className =
               {chapter.lines.map((l, i) => (
                 <p
                   key={l}
-                  className={`sc-line serif col-start-1 row-start-1 text-[clamp(1.6rem,3.6vw,3.2rem)] leading-[1.05] ${chapter.shape === "sun" ? "text-carbon" : "text-paper"} ${reducedMotion && i > 0 ? "hidden" : ""}`}
+                  className={`sc-line serif col-start-1 row-start-1 text-[clamp(1.6rem,3.6vw,3.2rem)] leading-[1.05] text-paper ${reducedMotion && i > 0 ? "hidden" : ""}`}
                 >
                   {l}
                 </p>

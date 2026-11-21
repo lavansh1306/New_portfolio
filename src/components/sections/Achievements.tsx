@@ -14,9 +14,9 @@ const Podium3D = dynamic(() => import("@/components/three/Podium3D"), { ssr: fal
 
 const badge: Record<string, string> = {
   Winner: "bg-signal text-carbon border-signal",
-  "1st Runner-Up": "border-carbon text-carbon",
-  "2nd Runner-Up": "border-carbon/50 text-carbon",
-  Finalist: "border-dashed border-carbon/50 text-graphite",
+  "1st Runner-Up": "border-paper text-paper",
+  "2nd Runner-Up": "border-paper/50 text-paper",
+  Finalist: "border-dashed border-paper/50 text-ash",
 };
 
 export function Achievements() {
@@ -34,12 +34,12 @@ export function Achievements() {
   }, []);
 
   return (
-    <section id="podium" aria-label="Achievements and certifications" className="relative z-10 overflow-hidden bg-paper text-carbon">
+    <section id="podium" aria-label="Achievements and certifications" className="relative z-10 overflow-hidden bg-carbon text-paper">
       {/* Outline marquee of every event */}
-      <div aria-hidden className="border-y border-carbon/15 py-5">
+      <div aria-hidden className="border-y border-paper/20 py-5">
         <div className="marquee-track flex w-max whitespace-nowrap" style={{ ["--marquee-dur" as string]: "60s" }}>
           {[0, 1].map((k) => (
-            <span key={k} className="display-xl outline-text pr-8 text-[clamp(3rem,7vw,6.5rem)] uppercase text-carbon/70">
+            <span key={k} className="display-xl outline-text pr-8 text-[clamp(3rem,7vw,6.5rem)] uppercase text-paper/70">
               {marquee}  ·
             </span>
           ))}
@@ -54,16 +54,16 @@ export function Achievements() {
             <div className="lg:sticky lg:top-24">
               <div className="flex items-end gap-4">
                 <span className="flex items-start">
-                  <CountUp to={podium.count} className="display-xl text-[clamp(6rem,11vw,10rem)] leading-[0.78] text-carbon" />
+                  <CountUp to={podium.count} className="display-xl text-[clamp(6rem,11vw,10rem)] leading-[0.78] text-paper" />
                   <span className="display-xl mt-2 text-[clamp(2.4rem,4vw,4rem)] text-signal">×</span>
                 </span>
                 <span className="serif pb-1 text-3xl leading-none">podium finishes</span>
               </div>
 
-              <figure ref={podiumRef} className="relative mt-8 aspect-[4/3] w-full border border-carbon/15 bg-paper-2" data-cursor-label="Drag">
+              <figure ref={podiumRef} className="relative mt-8 aspect-[4/3] w-full border border-paper/20 bg-carbon" data-cursor-label="Drag">
                 <figcaption className="pointer-events-none absolute inset-x-3 top-3 z-[1] flex justify-between">
-                  <span className="label text-[10px] text-graphite">Fig. 06 — one coin per finish</span>
-                  <span className="label text-[10px] text-graphite">drag</span>
+                  <span className="label text-[10px] text-ash">Fig. 06 — one coin per finish</span>
+                  <span className="label text-[10px] text-ash">drag</span>
                 </figcaption>
                 <div className="absolute inset-0">
                   {webgl ? (
@@ -75,8 +75,8 @@ export function Achievements() {
                         ["Winner ×3", "h-3/5"],
                         ["2nd RU ×1", "h-1/4"],
                       ].map(([l, h]) => (
-                        <div key={l} className={`flex w-1/4 items-center justify-center bg-carbon ${h}`}>
-                          <span className="label text-[9px] text-paper">{l}</span>
+                        <div key={l} className={`flex w-1/4 items-center justify-center bg-paper ${h}`}>
+                          <span className="label text-[9px] text-carbon">{l}</span>
                         </div>
                       ))}
                     </div>
@@ -85,24 +85,24 @@ export function Achievements() {
                 <p className="sr-only">3D podium: 3 wins, 4 first runner-up finishes, 1 second runner-up finish and 1 finalist spot.</p>
               </figure>
 
-              <div className="mt-8 flex items-baseline gap-4 border-t border-carbon/15 pt-6">
+              <div className="mt-8 flex items-baseline gap-4 border-t border-paper/20 pt-6">
                 <span className="display-lg text-5xl">{podium.prize}</span>
-                <span className="mono text-sm text-graphite">in cash prizes</span>
+                <span className="mono text-sm text-ash">in cash prizes</span>
               </div>
-              <p className="mono mt-4 text-sm text-graphite">Plus finalist spots at several other national and university-level hackathons.</p>
+              <p className="mono mt-4 text-sm text-ash">Plus finalist spots at several other national and university-level hackathons.</p>
             </div>
           </div>
 
           <div className="lg:col-span-7">
-            <div className="label mb-3 grid grid-cols-12 gap-4 text-graphite">
+            <div className="label mb-3 grid grid-cols-12 gap-4 text-ash">
               <span className="col-span-4 sm:col-span-3">Result</span>
               <span className="col-span-8 sm:col-span-9">Event</span>
             </div>
-            <ol className="border-t border-carbon">
+            <ol className="border-t border-paper/60">
               {results.map((r, i) => (
                 <motion.li
                   key={r.event}
-                  className="group grid grid-cols-12 items-center gap-4 border-b border-carbon/15 py-4"
+                  className="group grid grid-cols-12 items-center gap-4 border-b border-paper/20 py-4"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.8 }}
@@ -115,17 +115,17 @@ export function Achievements() {
                     <span className="display-lg text-[clamp(1.25rem,2.2vw,2rem)] transition-transform duration-500 group-hover:translate-x-2">
                       <ScrambleText text={r.event} duration={700} delay={i * 60} />
                     </span>
-                    {r.note && <span className="mono text-xs text-graphite">{r.note}</span>}
+                    {r.note && <span className="mono text-xs text-ash">{r.note}</span>}
                   </span>
                 </motion.li>
               ))}
             </ol>
 
             <div className="mt-16">
-              <p className="label text-graphite">Certifications</p>
-              <ul className="mt-4 grid gap-px bg-carbon/15 sm:grid-cols-2">
+              <p className="label text-ash">Certifications</p>
+              <ul className="mt-4 grid gap-px bg-carbon sm:grid-cols-2">
                 {certifications.map((c) => (
-                  <li key={c.name} className="flex flex-col gap-6 bg-paper-2 p-6">
+                  <li key={c.name} className="flex flex-col gap-6 bg-paper-2 p-6 text-carbon">
                     <span className="label flex items-center justify-between text-graphite">
                       <span>{c.issuer}</span>
                       <span>{c.year}</span>

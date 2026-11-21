@@ -54,12 +54,12 @@ export function Cursor() {
   const size = label ? 84 : hover ? 56 : 30;
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[70] mix-blend-difference">
-      <motion.div className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-paper" style={{ x, y, translateX: "-50%", translateY: "-50%" }} />
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-[70]">
+      <motion.div className="absolute left-0 top-0 h-2 w-2 rounded-full bg-paper shadow-[0_0_0_1.5px_#050606]" style={{ x, y, translateX: "-50%", translateY: "-50%" }} />
       <motion.div
-        className="absolute left-0 top-0 flex items-center justify-center rounded-full border border-paper"
+        className="absolute left-0 top-0 flex items-center justify-center rounded-full border border-paper shadow-[0_0_0_1.5px_#050606]"
         style={{ x: rx, y: ry, translateX: "-50%", translateY: "-50%" }}
-        animate={{ width: size, height: size, scale: down ? 0.82 : 1, backgroundColor: label ? "rgba(241,237,228,1)" : "rgba(241,237,228,0)" }}
+        animate={{ width: size, height: size, scale: down ? 0.82 : 1, backgroundColor: label ? "rgba(245,243,239,1)" : "rgba(245,243,239,0)" }}
         transition={{ type: "spring", stiffness: 300, damping: 24 }}
       >
         {label ? <span className="label text-[10px] text-carbon">{label}</span> : null}

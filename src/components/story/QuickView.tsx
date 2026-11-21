@@ -1,14 +1,25 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef } from "react";
-import { ArrowUpRight, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Check, Copy, Printer, X } from "lucide-react";
 import { certifications, chapters, profile, projects, results, skillCategories } from "@/content/profile";
 
 /** The whole story as a plain one-page resume, for people in a hurry. */
 export function QuickView({ open, onClose }: { open: boolean; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
+    }
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -46,9 +57,25 @@ export function QuickView({ open, onClose }: { open: boolean; onClose: () => voi
           >
             <div className="sticky top-0 z-[1] -mx-[var(--gutter)] flex items-center justify-between border-b border-carbon/15 bg-paper px-[var(--gutter)] py-3 sm:-mx-10 sm:px-10">
               <span className="label text-graphite">Quick view · the short version</span>
-              <button ref={closeRef} type="button" onClick={onClose} className="label flex items-center gap-1.5 rounded-full border border-carbon/30 px-3 py-2">
-                Close <X size={14} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  aria-label="Print or save as PDF"
+                  className="label flex min-h-[36px] items-center gap-1.5 rounded-full border border-carbon/25 px-3 py-1.5 text-xs transition-colors hover:bg-carbon hover:text-paper active:scale-95"
+                >
+                  <Printer size={13} aria-hidden /> Print / PDF
+                </button>
+                <button
+                  ref={closeRef}
+                  type="button"
+                  onClick={onClose}
+                  aria-label="Close quick view"
+                  className="label flex min-h-[36px] items-center gap-1.5 rounded-full border border-carbon/30 px-3.5 py-1.5 text-xs transition-colors hover:bg-carbon hover:text-paper active:scale-95"
+                >
+                  Close <X size={14} aria-hidden />
+                </button>
+              </div>
             </div>
 
             <header className="mt-8">
@@ -56,17 +83,33 @@ export function QuickView({ open, onClose }: { open: boolean; onClose: () => voi
                 {profile.firstName} {profile.lastName}
               </h2>
               <p className="serif mt-2 text-2xl text-graphite">{profile.role}</p>
-              <p className="mono mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                <a className="underline underline-offset-4" href={`mailto:${profile.email}`}>
-                  {profile.email}
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  aria-label={copied ? "Email copied to clipboard" : `Copy email ${profile.email}`}
+                  className="mono flex items-center gap-2 rounded-full border border-carbon/25 bg-paper-2 px-3.5 py-1.5 text-xs text-carbon transition-all hover:border-signal active:scale-95"
+                >
+                  {copied ? <Check size={13} className="text-signal" /> : <Copy size={13} />}
+                  <span>{copied ? "Copied to clipboard!" : profile.email}</span>
+                </button>
+                <a
+                  className="mono flex items-center gap-1 text-xs underline underline-offset-4 transition-colors hover:text-signal"
+                  href={profile.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub <ArrowUpRight size={12} aria-hidden />
                 </a>
-                <a className="underline underline-offset-4" href={profile.links.github} target="_blank" rel="noreferrer">
-                  GitHub
+                <a
+                  className="mono flex items-center gap-1 text-xs underline underline-offset-4 transition-colors hover:text-signal"
+                  href={profile.links.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn <ArrowUpRight size={12} aria-hidden />
                 </a>
-                <a className="underline underline-offset-4" href={profile.links.linkedin} target="_blank" rel="noreferrer">
-                  LinkedIn
-                </a>
-              </p>
+              </div>
             </header>
 
             <Block title="Experience">

@@ -79,7 +79,7 @@ function Cluster({
         y1={CY}
         x2={p.x}
         y2={p.y}
-        stroke={on ? "#d4a359" : "rgba(234,230,223,0.18)"}
+        stroke={on ? "#C8FF00" : "rgba(245,243,239,0.18)"}
         strokeWidth={1}
         strokeDasharray="3 5"
         initial={{ pathLength: 0 }}
@@ -100,7 +100,7 @@ function Cluster({
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.4, delay: 0.3 + index * 0.06 + j * 0.04, ease: [0.16, 1, 0.3, 1] }}
           >
-            <line x1={p.x} y1={p.y} x2={s.x} y2={s.y} stroke={on ? "rgba(212,163,89,0.6)" : "rgba(234,230,223,0.14)"} strokeWidth={1} />
+            <line x1={p.x} y1={p.y} x2={s.x} y2={s.y} stroke={on ? "rgba(200,255,0,0.6)" : "rgba(245,243,239,0.14)"} strokeWidth={1} />
             <g
               tabIndex={0}
               role="button"
@@ -118,12 +118,12 @@ function Cluster({
               data-cursor="hover"
             >
               <rect x={s.anchor === "start" ? s.x - 8 : s.x - 150} y={s.y - 10} width={158} height={20} fill="transparent" />
-              <circle cx={s.x} cy={s.y} r={hot ? 5.5 : 3.2} fill={hot || on ? "#d4a359" : "#eae6df"} style={{ transition: "r .3s, fill .3s" }} />
+              <circle cx={s.x} cy={s.y} r={hot ? 5.5 : 3.2} fill={hot || on ? "#C8FF00" : "rgba(245,243,239,0.7)"} style={{ transition: "r .3s, fill .3s" }} />
               <text
                 x={s.x + (s.anchor === "start" ? 11 : s.anchor === "end" ? -11 : 0)}
                 y={s.y + 4}
                 textAnchor={s.anchor}
-                fill={hot ? "#d4a359" : "rgba(234,230,223,0.82)"}
+                fill={hot ? "#C8FF00" : "rgba(245,243,239,0.82)"}
                 style={{ font: "500 13px var(--font-mono)", letterSpacing: "0.02em", transition: "fill .3s" }}
               >
                 {s.name}
@@ -133,13 +133,13 @@ function Cluster({
         );
       })}
       <g tabIndex={-1}>
-        <circle cx={p.x} cy={p.y} r={on ? 30 : 24} fill="#1c221e" stroke={on ? "#d4a359" : "rgba(234,230,223,0.5)"} strokeWidth={1} style={{ transition: "r .35s" }} />
-        <circle cx={p.x} cy={p.y} r={3} fill="#d4a359" />
+        <circle cx={p.x} cy={p.y} r={on ? 30 : 24} fill="#050606" stroke={on ? "#C8FF00" : "rgba(245,243,239,0.5)"} strokeWidth={1} style={{ transition: "r .35s" }} />
+        <circle cx={p.x} cy={p.y} r={3} fill="#C8FF00" />
         <text
           x={p.x + (Math.cos(p.angle) >= 0 ? 30 : -30)}
           y={p.y + (Math.sin(p.angle) > 0.2 ? -40 : 52)}
           textAnchor={Math.cos(p.angle) >= 0 ? "end" : "start"}
-          fill="#eae6df"
+          fill="#F5F3EF"
           style={{ font: "700 15px var(--font-display)", fontStretch: "118%", letterSpacing: "-0.01em", textTransform: "uppercase" }}
         >
           {p.cat.label}
@@ -170,6 +170,45 @@ export function TechUniverse() {
         tone="dark"
       />
 
+      {/* Category filter pills (Hick's Law & Von Restorff Effect) */}
+      <div className="mt-12 flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter skill categories">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeCat === null}
+          onClick={() => {
+            setActiveCat(null);
+            setSkill(null);
+          }}
+          className={`label min-h-[38px] rounded-full border px-4 py-1.5 text-xs transition-all active:scale-95 ${
+            activeCat === null
+              ? "border-signal bg-signal text-carbon font-semibold"
+              : "border-paper/20 text-paper/70 hover:border-paper/40 hover:text-paper"
+          }`}
+        >
+          All Orbits ({total})
+        </button>
+        {skillCategories.map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            role="tab"
+            aria-selected={activeCat === cat.id}
+            onClick={() => {
+              setActiveCat(activeCat === cat.id ? null : cat.id);
+              if (activeCat === cat.id) setSkill(null);
+            }}
+            className={`label min-h-[38px] rounded-full border px-4 py-1.5 text-xs transition-all active:scale-95 ${
+              activeCat === cat.id
+                ? "border-signal bg-signal text-carbon font-semibold"
+                : "border-paper/20 text-paper/70 hover:border-paper/40 hover:text-paper"
+            }`}
+          >
+            {cat.label} ({cat.skills.length})
+          </button>
+        ))}
+      </div>
+
       {/* Desktop constellation */}
       <div
         className="relative mt-16 hidden md:block"
@@ -180,8 +219,8 @@ export function TechUniverse() {
         }}
       >
         <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="group" aria-label="Skills grouped by category">
-          <ellipse cx={CX} cy={CY} rx={360} ry={245} fill="none" stroke="rgba(241,237,228,0.08)" />
-          <ellipse cx={CX} cy={CY} rx={500} ry={340} fill="none" stroke="rgba(241,237,228,0.05)" strokeDasharray="2 8" />
+          <ellipse cx={CX} cy={CY} rx={360} ry={245} fill="none" stroke="rgba(245,243,239,0.08)" />
+          <ellipse cx={CX} cy={CY} rx={500} ry={340} fill="none" stroke="rgba(245,243,239,0.05)" strokeDasharray="2 8" />
           {placed.map((p, i) => (
             <Cluster
               key={p.cat.id}
@@ -195,8 +234,8 @@ export function TechUniverse() {
               activeSkill={skill?.name ?? null}
             />
           ))}
-          <circle cx={CX} cy={CY} r={56} fill="#d4a359" />
-          <text x={CX} y={CY + 8} textAnchor="middle" fill="#1c221e" style={{ font: "800 26px var(--font-display)", fontStretch: "125%" }}>
+          <circle cx={CX} cy={CY} r={56} fill="#C8FF00" />
+          <text x={CX} y={CY + 8} textAnchor="middle" fill="#050606" style={{ font: "800 26px var(--font-display)", fontStretch: "125%" }}>
             LC
           </text>
         </svg>
@@ -225,7 +264,7 @@ export function TechUniverse() {
 
       {/* Mobile: grouped chips */}
       <div className="mt-14 grid gap-10 md:hidden">
-        {skillCategories.map((c, i) => {
+        {(activeCat ? skillCategories.filter((c) => c.id === activeCat) : skillCategories).map((c, i) => {
           const selected = c.skills.find((s) => s.name === mobileSkill);
           return (
             <div key={c.id}>
