@@ -31,8 +31,8 @@ export function StoryWorld() {
             style={{ visibility: "hidden" }}
           >
             <div className="flex -translate-y-1/2 translate-x-4 items-center gap-2 group-data-[side=left]:-translate-x-[calc(100%+1rem)] group-data-[side=left]:flex-row-reverse">
-              <span className="h-px w-4 bg-paper/50 group-data-[lit=true]:bg-signal" />
-              <span className="label whitespace-nowrap text-[10px] text-paper group-data-[lit=true]:text-signal">{name}</span>
+              <span className="h-px w-4 bg-paper/40 group-data-[lit=true]:bg-paper" />
+              <span className="label whitespace-nowrap text-[10px] text-ash group-data-[lit=true]:text-paper">{name}</span>
             </div>
           </div>
         ))}

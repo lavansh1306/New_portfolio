@@ -222,7 +222,7 @@ export const projects: Project[] = [
     stack: ["FastAPI", "PostgreSQL · pgvector", "Redis", "React", "TypeScript", "Multi-agent LLMs", "OCR", "Docker"],
     repo: null, // TODO(verify): add repo link or keep private
     live: null,
-    accent: "#D4A359",
+    accent: "#C8FF00",
     tone: "dark",
     visual: "tender",
     featured: true,
@@ -245,7 +245,7 @@ export const projects: Project[] = [
     stack: ["React", "Vite", "ECharts", "FastAPI", "pandas", "DuckDB", "Parquet", "LLM"],
     repo: null, // TODO(verify): C-DAC work — confirm it can be shown publicly
     live: null,
-    accent: "#B85D43",
+    accent: "#C8FF00",
     tone: "light",
     visual: "pipeline",
     featured: true,
@@ -268,7 +268,7 @@ export const projects: Project[] = [
     stack: ["Python", "FastAPI", "Qwen · Ollama", "TF-IDF · Chroma", "MySQL", "SQLAlchemy", "Docker"],
     repo: null, // TODO(verify)
     live: null,
-    accent: "#D4A359",
+    accent: "#C8FF00",
     tone: "dark",
     visual: "triage",
     featured: true,
@@ -288,7 +288,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Python", "Celery", "Kubernetes", "CI/CD"],
     repo: null, // TODO(verify)
     live: null,
-    accent: "#B85D43",
+    accent: "#C8FF00",
     tone: "light",
     visual: "agents",
     featured: true,
@@ -308,7 +308,7 @@ export const projects: Project[] = [
     stack: ["React", "TypeScript", "Node.js", "Express", "Redis", "OAuth 2.0"],
     repo: null, // TODO(verify)
     live: null,
-    accent: "#D4A359",
+    accent: "#C8FF00",
     tone: "dark",
     visual: "gantt",
     featured: true,
@@ -328,7 +328,7 @@ export const projects: Project[] = [
     stack: ["FastAPI", "asyncio", "WebSockets", "Docker"],
     repo: null, // TODO(verify)
     live: null,
-    accent: "#B85D43",
+    accent: "#C8FF00",
     tone: "light",
     visual: "network",
     featured: true,
@@ -349,7 +349,7 @@ export const projects: Project[] = [
     stack: ["Flask", "TensorFlow", "YAMNet", "Vosk", "Librosa", "Twilio", "Gemini"],
     repo: "https://github.com/lavansh1306/RAKSHA_X",
     live: null,
-    accent: "#D4A359",
+    accent: "#C8FF00",
     tone: "light",
     visual: "waveform",
     featured: false,
@@ -369,7 +369,7 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Slack API", "LLM APIs", "JSON Schema", "Vercel"],
     repo: null, // TODO(verify)
     live: null,
-    accent: "#B85D43",
+    accent: "#C8FF00",
     tone: "dark",
     visual: "thread",
     featured: false,
@@ -390,7 +390,7 @@ export const projects: Project[] = [
     stack: ["React", "TypeScript", "Vite", "Tailwind", "FastAPI", "Flask", "Gemini"],
     repo: "https://github.com/lavansh1306/Stock_Verse",
     live: "https://stock-verse-nine.vercel.app",
-    accent: "#D4A359",
+    accent: "#C8FF00",
     tone: "light",
     visual: "candles",
     featured: false,
@@ -410,7 +410,7 @@ export const projects: Project[] = [
     stack: ["React", "TypeScript", "Java 17", "Spring Boot", "PostgreSQL", "JWT"],
     repo: "https://github.com/lavansh1306/Peer--Point",
     live: null,
-    accent: "#B85D43",
+    accent: "#C8FF00",
     tone: "dark",
     visual: "qa",
     featured: false,
@@ -551,13 +551,13 @@ export type StoryChapter = {
 };
 
 export const story: StoryChapter[] = [
-  { id: "prologue", num: "00", title: "Overview", shape: "cube", sky: "#0b1220", lines: [] },
+  { id: "prologue", num: "00", title: "Overview", shape: "cube", sky: "#050606", lines: [] },
   {
     id: "person",
     num: "01",
     title: "Profile",
     shape: "tunnel",
-    sky: "#101211",
+    sky: "#050606",
     lines: ["I’m Lavansh, a CS student at SRM.", "I learn by shipping things people can actually use."],
   },
   {
@@ -565,7 +565,7 @@ export const story: StoryChapter[] = [
     num: "02",
     title: "Roots",
     shape: "map",
-    sky: "#14120f",
+    sky: "#050606",
     lines: ["Every career starts somewhere.", "Mine started in Gurugram."],
   },
   {
@@ -573,7 +573,7 @@ export const story: StoryChapter[] = [
     num: "03",
     title: "Technical focus",
     shape: "stars",
-    sky: "#0f1215",
+    sky: "#050606",
     lines: ["Every tool here is one I’ve shipped with.", "No percentage bars. Just where I used it."],
   },
   {
@@ -581,7 +581,7 @@ export const story: StoryChapter[] = [
     num: "04",
     title: "Selected work",
     shape: "rail",
-    sky: "#121312",
+    sky: "#050606",
     lines: ["Ten projects, ranked by how hard they were to get right.", "The best ones verify before they automate."],
   },
   {
@@ -589,7 +589,7 @@ export const story: StoryChapter[] = [
     num: "05",
     title: "Experience",
     shape: "map",
-    sky: "#11151a",
+    sky: "#050606",
     lines: ["I did not learn to build in isolation.", "I looked for rooms where the work was happening."],
   },
   {
@@ -597,7 +597,7 @@ export const story: StoryChapter[] = [
     num: "06",
     title: "Achievements",
     shape: "medal",
-    sky: "#161212",
+    sky: "#050606",
     lines: ["Then came the hackathons.", "Eight podium finishes. Three wins."],
   },
   {
@@ -605,10 +605,10 @@ export const story: StoryChapter[] = [
     num: "07",
     title: "Working principles",
     shape: "horizon",
-    sky: "#2a211d",
+    sky: "#050606",
     lines: ["Four habits I keep on every project."],
   },
-  { id: "signal", num: "08", title: "Contact", shape: "sun", sky: "#eef3f8", lines: ["Let’s build something useful."] },
+  { id: "signal", num: "08", title: "Contact", shape: "sun", sky: "#050606", lines: ["Let’s build something useful."] },
 ];
 
 export type Photo = { src: string; alt: string; caption: string; w: number; h: number };

@@ -12,7 +12,7 @@ import { useApp } from "@/components/providers/AppProvider";
 function SignalRow({ noise, signal, source, i }: { noise: string; signal: string; source: string; i: number }) {
   return (
     <motion.li
-      className="group relative grid grid-cols-12 items-center gap-x-4 gap-y-2 border-t border-carbon/15 py-5 md:py-6"
+      className="group relative grid grid-cols-12 items-center gap-x-4 gap-y-2 border-t border-paper/20 py-5 hover:[--sig:#050606] md:py-6"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.6 }}
@@ -21,21 +21,21 @@ function SignalRow({ noise, signal, source, i }: { noise: string; signal: string
     >
       <span
         aria-hidden
-        className="absolute inset-0 origin-bottom scale-y-0 bg-carbon transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:scale-y-100"
+        className="absolute inset-0 origin-bottom scale-y-0 bg-paper transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:scale-y-100"
       />
-      <span className="label relative col-span-12 text-graphite transition-colors duration-500 group-hover:text-ash md:col-span-1 md:pl-3">
+      <span className="label relative col-span-12 text-ash transition-colors duration-500 group-hover:text-graphite md:col-span-1 md:pl-3">
         {String(i + 1).padStart(2, "0")}
       </span>
-      <span className="mono relative col-span-12 text-sm text-graphite transition-colors duration-500 group-hover:text-ash md:col-span-4">
+      <span className="mono relative col-span-12 text-sm text-ash transition-colors duration-500 group-hover:text-graphite md:col-span-4">
         <ScrambleText text={noise} trigger="hover" />
       </span>
       <span aria-hidden className="relative col-span-1 hidden h-px md:block">
-        <span className="absolute inset-0 origin-left scale-x-50 bg-carbon/30 transition-all duration-500 group-hover:scale-x-100 group-hover:bg-signal" />
+        <span className="absolute inset-0 origin-left scale-x-50 bg-paper/30 transition-all duration-500 group-hover:scale-x-100 group-hover:bg-signal" />
       </span>
-      <span className="display-lg relative col-span-12 text-[clamp(1.35rem,2.2vw,2.1rem)] leading-[1.02] transition-colors duration-500 group-hover:text-paper md:col-span-4">
+      <span className="display-lg relative col-span-12 text-[clamp(1.35rem,2.2vw,2.1rem)] leading-[1.02] transition-colors duration-500 group-hover:text-carbon md:col-span-4">
         {signal}
       </span>
-      <span className="label relative col-span-12 text-graphite transition-colors duration-500 group-hover:text-signal md:col-span-2 md:pr-3 md:text-right">
+      <span className="label relative col-span-12 text-ash transition-colors duration-500 group-hover:text-signal md:col-span-2 md:pr-3 md:text-right">
         {source}
       </span>
     </motion.li>
@@ -79,7 +79,7 @@ export function About() {
   );
 
   return (
-    <div ref={shell} id="about" className="relative z-10 -mt-[1px] bg-paper text-carbon">
+    <div ref={shell} id="about" className="relative z-10 -mt-[1px] bg-carbon text-paper">
       <section aria-label="About" className="px-[var(--gutter)] pb-24 pt-28 md:pb-36 md:pt-40">
         <SectionHeader index="01" label="About" title="The human behind the code" kicker="B.Tech CSE, class of 2028. Interning since first year." />
 
@@ -88,7 +88,7 @@ export function About() {
           <aside className="md:col-span-4">
             <div className="md:sticky md:top-24">
               <DotPortrait photo={photos.portrait} className="mb-6 aspect-[4/5] w-full max-w-sm" />
-              <dl className="border-t border-carbon">
+              <dl className="border-t border-paper/60">
                 {[
                   ["Name", `${profile.firstName} ${profile.lastName}`],
                   ["Based", "India · IST"],
@@ -96,13 +96,13 @@ export function About() {
                   ["Focus", "Full-stack · AI · Real-time systems"],
                   ["Now", "AI Engineering Intern, C-DAC"],
                 ].map(([k, v]) => (
-                  <div key={k} className="grid grid-cols-3 border-b border-carbon/15 py-3">
-                    <dt className="label text-graphite">{k}</dt>
+                  <div key={k} className="grid grid-cols-3 border-b border-paper/20 py-3">
+                    <dt className="label text-ash">{k}</dt>
                     <dd className="mono col-span-2 text-sm">{v}</dd>
                   </div>
                 ))}
               </dl>
-              <p className="label mt-4 text-graphite">Fig. 01 — spec sheet</p>
+              <p className="label mt-4 text-ash">Fig. 01 — spec sheet</p>
             </div>
           </aside>
 
@@ -115,13 +115,13 @@ export function About() {
               ))}
             </p>
 
-            <div className="mt-16 grid gap-px overflow-hidden rounded-sm bg-carbon/15 sm:grid-cols-3">
+            <div className="mt-16 grid gap-px overflow-hidden rounded-sm bg-paper/20 sm:grid-cols-3">
               {about.facts.map((f) => (
-                <div key={f.label} className="flex flex-col gap-6 bg-paper p-5">
-                  <span className="label text-graphite">{f.label}</span>
+                <div key={f.label} className="flex flex-col gap-6 bg-carbon p-5">
+                  <span className="label text-ash">{f.label}</span>
                   <span>
                     <span className="display-lg block text-2xl">{f.value}</span>
-                    <span className="serif-i mt-1 block text-lg text-graphite">{f.note}</span>
+                    <span className="serif mt-1 block text-lg text-ash">{f.note}</span>
                   </span>
                 </div>
               ))}
@@ -134,20 +134,20 @@ export function About() {
       <section aria-labelledby="signal-title" className="px-[var(--gutter)] pb-28 md:pb-40">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <h3 id="signal-title" className="display-lg max-w-3xl text-[clamp(2rem,4.6vw,4.4rem)]">
-            From problem <span className="serif-i font-normal text-signal">to outcome.</span>
+            From problem <span className="serif font-normal text-signal">to outcome.</span>
           </h3>
-          <p className="mono max-w-sm text-sm text-graphite">
+          <p className="mono max-w-sm text-sm text-ash">
             The same approach, again and again: understand the constraint, verify the result, and make the system useful. Hover a row.
           </p>
         </div>
-        <div className="label mb-2 hidden grid-cols-12 gap-4 text-graphite md:grid">
+        <div className="label mb-2 hidden grid-cols-12 gap-4 text-ash md:grid">
           <span className="col-span-1 pl-3">#</span>
           <span className="col-span-4">Starting point</span>
           <span className="col-span-1" />
           <span className="col-span-4">Outcome</span>
           <span className="col-span-2 pr-3 text-right">Where</span>
         </div>
-        <ul className="border-b border-carbon/15">
+        <ul className="border-b border-paper/20">
           {signals.map((s, i) => (
             <SignalRow key={s.source} {...s} i={i} />
           ))}

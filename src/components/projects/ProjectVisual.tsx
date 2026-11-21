@@ -40,7 +40,7 @@ function Agents({ ink, accent }: P) {
         </g>
       ))}
       <polygon points="200,124 222,137 222,163 200,176 178,163 178,137" fill={accent} />
-      <text x="200" y="154" textAnchor="middle" fill="#111312" style={{ font: "700 10px var(--font-mono)" }}>
+      <text x="200" y="154" textAnchor="middle" fill="#050606" style={{ font: "700 10px var(--font-mono)" }}>
         APK
       </text>
       <text x="14" y="288" fill={ink} fillOpacity="0.6" style={{ font: "500 9px var(--font-mono)" }}>
@@ -145,7 +145,7 @@ function Waveform({ ink, accent }: P) {
       ))}
       <g className="pop" style={v({ "--d": "2.4s", "--delay": "0.6s" })}>
         <rect x="268" y="20" width="96" height="26" fill={accent} />
-        <text x="316" y="37" textAnchor="middle" fill="#111312" style={{ font: "700 10px var(--font-mono)" }}>
+        <text x="316" y="37" textAnchor="middle" fill="#050606" style={{ font: "700 10px var(--font-mono)" }}>
           SOS → WhatsApp
         </text>
       </g>
@@ -172,7 +172,7 @@ function Thread({ ink, accent }: P) {
       <polygon points="222,145 232,150 222,155" fill={accent} />
       <rect x="244" y="62" width="140" height="176" fill="none" stroke={ink} strokeOpacity="0.6" />
       <rect x="244" y="62" width="140" height="22" fill={accent} />
-      <text x="254" y="77" fill="#111312" style={{ font: "700 9px var(--font-mono)" }}>
+      <text x="254" y="77" fill="#050606" style={{ font: "700 9px var(--font-mono)" }}>
         TASK.json ✓ schema
       </text>
       {fields.map((f, i) => (
@@ -249,7 +249,7 @@ function QA({ ink, accent }: P) {
           <path d={`M${r.x === 140 ? 100 : 60} ${r.y + 8} H${r.x}`} stroke={ink} strokeOpacity="0.3" />
           {r.x === 140 && <path d="M100 158 V196" stroke={ink} strokeOpacity="0.3" />}
           <rect x={r.x} y={r.y} width={r.w} height="18" fill={r.accepted ? accent : "none"} stroke={r.accepted ? accent : ink} strokeOpacity="0.7" />
-          <rect x={r.x + 8} y={r.y + 7} width={r.w - 40} height="4" fill={r.accepted ? "#111312" : ink} fillOpacity="0.7" />
+          <rect x={r.x + 8} y={r.y + 7} width={r.w - 40} height="4" fill={r.accepted ? "#050606" : ink} fillOpacity="0.7" />
           {r.accepted && (
             <text x={r.x + r.w + 8} y={r.y + 13} fill={accent} style={{ font: "700 9px var(--font-mono)" }}>
               ✓ accepted
@@ -307,7 +307,7 @@ function Tender({ ink, accent }: P) {
           </text>
           <g className="pop" style={v({ "--d": "7s", "--delay": `${r2(1.8 + j * 0.35)}s` })}>
             <rect x={210 + j * 52} y="134" width="28" height="16" fill={accent} />
-            <text x={224 + j * 52} y="145" textAnchor="middle" fill="#111312" style={{ font: "700 8px var(--font-mono)" }}>
+            <text x={224 + j * 52} y="145" textAnchor="middle" fill="#050606" style={{ font: "700 8px var(--font-mono)" }}>
               ✓
             </text>
           </g>
@@ -348,7 +348,7 @@ function Pipeline({ ink, accent }: P) {
       {nodes.map((n, i) => (
         <g key={i}>
           <circle cx={n.x} cy="110" r="11" fill={i === 6 ? accent : "none"} stroke={i === 6 ? accent : ink} strokeOpacity="0.85" />
-          <text x={n.x} y="113.5" textAnchor="middle" fill={i === 6 ? "#111312" : ink} style={{ font: "700 8px var(--font-mono)" }}>
+          <text x={n.x} y="113.5" textAnchor="middle" fill={i === 6 ? "#050606" : ink} style={{ font: "700 8px var(--font-mono)" }}>
             {i + 1}
           </text>
         </g>
@@ -381,7 +381,7 @@ function Pipeline({ ink, accent }: P) {
       ))}
       <g className="pop" style={v({ "--d": "6s", "--delay": "1.4s" })}>
         <rect x="292" y="192" width="80" height="16" fill={accent} />
-        <text x="332" y="203" textAnchor="middle" fill="#111312" style={{ font: "700 7px var(--font-mono)" }}>
+        <text x="332" y="203" textAnchor="middle" fill="#050606" style={{ font: "700 7px var(--font-mono)" }}>
           VERIFIED 2 / 2
         </text>
       </g>

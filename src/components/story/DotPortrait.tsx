@@ -75,7 +75,7 @@ export function DotPortrait({ photo, className = "" }: { photo: Photo; className
       const draw = (now: number) => {
         const p = Math.min(1, (now - start) / dur);
         ctx.clearRect(0, 0, r.width, r.height);
-        ctx.fillStyle = "#111312";
+        ctx.fillStyle = "#050606";
         for (const d of dots) {
           const t = ease(Math.min(1, Math.max(0, (p - d.d) / (1 - d.d))));
           const x = d.sx + (d.tx - d.sx) * t;

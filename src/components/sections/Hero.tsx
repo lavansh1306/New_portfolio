@@ -150,26 +150,44 @@ export function Hero() {
           <div className="grid gap-5 md:grid-cols-12 md:gap-6">
             <div className="hero-rule col-span-full h-px bg-paper/25" />
             <div className="relative md:col-span-7">
-              <p className="hero-statement-text hero-fade serif-i text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">{profile.positioning}</p>
-              <p aria-hidden className="hero-cap-0 serif-i invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
+              <p className="hero-statement-text hero-fade serif text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">{profile.positioning}</p>
+              <p aria-hidden className="hero-cap-0 serif invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
                 Most of what I build starts with a practical problem.
               </p>
-              <p aria-hidden className="hero-cap-1 serif-i invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
-                This is how I turn it into <span className="text-signal">software people can use.</span>
+              <p aria-hidden className="hero-cap-1 serif invisible absolute inset-0 text-[clamp(1.45rem,2.8vw,2.9rem)] leading-[1.02]">
+                This is how I turn it into <span className="underline decoration-signal decoration-[0.07em] underline-offset-[0.12em]">software people can use.</span>
               </p>
             </div>
-            <div className="hero-fade flex flex-wrap items-end gap-2 md:col-span-5 md:justify-end md:gap-3">
+            <div className="hero-fade flex flex-wrap items-end gap-2 md:col-span-5 md:justify-end md:gap-2.5">
+              <Magnetic>
+                <button
+                  type="button"
+                  onClick={() => scrollTo('[data-chapter="builds"]')}
+                  className="label flex min-h-[44px] items-center gap-1.5 rounded-full bg-signal px-4 py-2.5 text-carbon font-semibold transition-all hover:brightness-110 active:scale-95 shadow-md"
+                >
+                  Explore Work
+                  <ArrowDownRight size={14} strokeWidth={2} aria-hidden />
+                </button>
+              </Magnetic>
+              <Magnetic>
+                <button
+                  type="button"
+                  onClick={() => scrollTo('[data-chapter="signal"]')}
+                  className="label flex min-h-[44px] items-center gap-1.5 rounded-full border border-paper/40 px-3.5 py-2.5 transition-colors hover:border-signal hover:bg-signal hover:text-carbon active:scale-95"
+                >
+                  Contact
+                </button>
+              </Magnetic>
               {[
                 { href: profile.links.github, label: "GitHub" },
                 { href: profile.links.linkedin, label: "LinkedIn" },
-                { href: `mailto:${profile.email}`, label: "Email" },
               ].map(({ href, label }) => (
                 <Magnetic key={label}>
                   <a
                     href={href}
-                    target={href.startsWith("http") ? "_blank" : undefined}
+                    target="_blank"
                     rel="noreferrer"
-                    className="label flex items-center gap-1.5 rounded-full border border-paper/30 px-4 py-3 transition-colors hover:border-signal hover:bg-signal hover:text-carbon"
+                    className="label flex min-h-[44px] items-center gap-1.5 rounded-full border border-paper/30 px-3 py-2.5 transition-colors hover:border-signal hover:bg-signal hover:text-carbon"
                   >
                     {label}
                     <ArrowUpRight size={13} strokeWidth={1.75} aria-hidden />

@@ -13,9 +13,9 @@ import * as THREE from "three";
 type Step = { label: string; count: number; x: number; h: number; coin: string; rank: string };
 
 const STEPS: Step[] = [
-  { label: "1st Runner-Up", rank: "02", count: 4, x: -1.32, h: 1.15, coin: "#e7e2d6" },
-  { label: "Winner", rank: "01", count: 3, x: 0, h: 1.7, coin: "#d4a359" },
-  { label: "2nd Runner-Up", rank: "03", count: 1, x: 1.32, h: 0.72, coin: "#b85d43" },
+  { label: "1st Runner-Up", rank: "02", count: 4, x: -1.32, h: 1.15, coin: "#C8FF00" },
+  { label: "Winner", rank: "01", count: 3, x: 0, h: 1.7, coin: "#C8FF00" },
+  { label: "2nd Runner-Up", rank: "03", count: 1, x: 1.32, h: 0.72, coin: "#C8FF00" },
 ];
 
 const COIN_H = 0.13;
@@ -60,7 +60,7 @@ function Scene({ active, reducedMotion, labels }: { active: boolean; reducedMoti
         });
       }
     });
-    list.push({ x: 2.05, z: 1.05, rest: COIN_H / 2, y: reducedMotion ? COIN_H / 2 : 3.6, v: 0, delay: d * 0.14 + 0.2, rot: 0.4, color: "#68736b", flat: true });
+    list.push({ x: 2.05, z: 1.05, rest: COIN_H / 2, y: reducedMotion ? COIN_H / 2 : 3.6, v: 0, delay: d * 0.14 + 0.2, rot: 0.4, color: "#F5F3EF", flat: true });
     return list;
   }, [reducedMotion]);
 
@@ -174,11 +174,11 @@ function Scene({ active, reducedMotion, labels }: { active: boolean; reducedMoti
           onPointerOut={() => setHovered((h) => (h === i ? null : h))}
         >
           <RoundedBox args={[1.2, s.h, 1.2]} radius={0.035} smoothness={3} position={[s.x, s.h / 2, 0]}>
-            <meshStandardMaterial color={hovered === i ? "#262a27" : "#1a1d1b"} roughness={0.7} metalness={0.05} />
+            <meshStandardMaterial color="#F5F3EF" emissive={hovered === i ? "#C8FF00" : "#000000"} emissiveIntensity={0.18} roughness={0.7} metalness={0.05} />
           </RoundedBox>
           <mesh position={[s.x, s.h + 0.002, 0]} rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[1.12, 1.12]} />
-            <meshBasicMaterial color={i === 1 ? "#d4a359" : "#2d3631"} transparent opacity={i === 1 ? 0.18 : 0.6} />
+            <meshBasicMaterial color={i === 1 || hovered === i ? "#C8FF00" : "#050606"} transparent opacity={i === 1 || hovered === i ? 0.5 : 0.12} />
           </mesh>
         </group>
       ))}
@@ -194,7 +194,7 @@ function Scene({ active, reducedMotion, labels }: { active: boolean; reducedMoti
           castShadow
         />
       ))}
-      <ContactShadows position={[0, 0.001, 0]} opacity={0.38} scale={9} blur={2.6} far={3} resolution={512} color="#1c221e" />
+      <ContactShadows position={[0, 0.001, 0]} opacity={0.38} scale={9} blur={2.6} far={3} resolution={512} color="#050606" />
     </group>
   );
 }
@@ -212,9 +212,9 @@ export default function Podium3D({ active, reducedMotion }: { active: boolean; r
         onCreated={({ camera }) => camera.lookAt(0, 0.15, 0)}
       >
         <ambientLight intensity={0.7} />
-        <hemisphereLight args={["#eae6df", "#68736b", 0.6]} />
+        <hemisphereLight args={["#F5F3EF", "#050606", 0.6]} />
         <directionalLight position={[3, 6, 5]} intensity={1.8} />
-        <directionalLight position={[-4, 2, -3]} intensity={0.6} color="#d4a359" />
+        <directionalLight position={[-4, 2, -3]} intensity={0.6} color="#C8FF00" />
         <Scene active={active} reducedMotion={reducedMotion} labels={labels} />
       </Canvas>
       {STEPS.map((s, i) => (
@@ -224,9 +224,9 @@ export default function Podium3D({ active, reducedMotion }: { active: boolean; r
             labels.current[i] = el;
           }}
           aria-hidden
-          className="pointer-events-none absolute left-0 top-0 flex select-none flex-col items-center text-center text-paper opacity-0"
+          className="pointer-events-none absolute left-0 top-0 flex select-none flex-col items-center text-center text-carbon opacity-0"
         >
-          <span className="display-lg text-[clamp(1.3rem,2.2vw,2rem)] leading-none" style={{ color: i === 1 ? "#d4a359" : undefined }}>
+          <span className="display-lg text-[clamp(1.3rem,2.2vw,2rem)] leading-none" style={{ color: "#050606" }}>
             ×{s.count}
           </span>
           <span className="label mt-1 text-[8px] leading-tight">
@@ -243,7 +243,7 @@ export default function Podium3D({ active, reducedMotion }: { active: boolean; r
           labels.current[STEPS.length] = el;
         }}
         aria-hidden
-        className="label pointer-events-none absolute left-0 top-0 whitespace-nowrap text-[9px] text-graphite opacity-0"
+        className="label pointer-events-none absolute left-0 top-0 whitespace-nowrap text-[9px] text-ash opacity-0"
       >
         Finalist ×1
       </div>

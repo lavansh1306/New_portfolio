@@ -74,40 +74,50 @@ export function Epilogue() {
               className="absolute block aspect-square w-[7%] -translate-x-1/2 -translate-y-1/2"
               style={{ left: `${sunsetSun.x * 100}%`, top: `${sunsetSun.y * 100}%` }}
             />
-            <figcaption className="label absolute -bottom-6 left-0 text-[10px] text-graphite" style={{ opacity: show ? 1 : 0 }}>
+            <figcaption className="label absolute -bottom-6 left-0 text-[10px] text-ash" style={{ opacity: show ? 1 : 0 }}>
               Fig. 08 — contact, at dawn
             </figcaption>
           </div>
         </figure>
 
         {/* Contact */}
-        <div className="flex min-h-0 flex-col justify-end gap-6 text-carbon md:order-1 md:col-span-7 md:justify-center">
+        <div className="flex min-h-0 flex-col justify-end gap-6 text-paper md:order-1 md:col-span-7 md:justify-center">
           <AnimatePresence>
             {show && (
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-paper/25 px-3.5 py-1 text-xs mono text-paper">
+                  <span className="live-dot inline-block h-2 w-2 rounded-full bg-signal" />
+                  <span>Open for Software & AI Engineering roles</span>
+                </div>
                 <h2 className="display-xl text-[clamp(2.1rem,7vw,7.4rem)]">
                   Let’s build something <span className="text-signal">useful.</span>
                 </h2>
-                <div className="mt-5 flex flex-col gap-2 sm:mt-8 sm:flex-row sm:items-center sm:gap-5">
+                <div className="mt-5 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-4">
                   <Magnetic strength={0.2}>
                     <button
                       type="button"
                       onClick={copy}
                       data-cursor-label={copied ? "Copied" : "Copy"}
-                      className="group flex items-center gap-3 rounded-full bg-carbon py-3 pl-6 pr-3 text-paper transition-transform active:scale-[0.98]"
+                      className="group flex min-h-[48px] items-center gap-3 rounded-full bg-paper py-3 pl-6 pr-3 text-carbon transition-transform active:scale-[0.98] shadow-lg"
                       aria-label={copied ? "Email copied" : `Copy email address ${profile.email}`}
                     >
                       <span className="display-lg text-[clamp(0.95rem,1.8vw,1.5rem)] normal-case">{profile.email}</span>
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-signal text-carbon">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-carbon text-paper">
                         {copied ? <Check size={18} /> : <Copy size={16} />}
                       </span>
                     </button>
                   </Magnetic>
-                  <span className="label text-graphite" aria-live="polite">
-                    {copied ? "Copied. Talk soon." : "Click to copy"}
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="label flex min-h-[48px] items-center gap-2 rounded-full border border-paper/40 px-5 py-3 text-paper transition-colors hover:border-paper hover:bg-paper hover:text-carbon active:scale-95"
+                  >
+                    Send Email <ArrowUpRight size={14} aria-hidden />
+                  </a>
+                  <span className="label text-ash" aria-live="polite">
+                    {copied ? "Copied to clipboard!" : ""}
                   </span>
                 </div>
-                <ul className="mt-5 grid max-w-xl grid-cols-3 border-t border-carbon/20 sm:mt-8">
+                <ul className="mt-5 grid max-w-xl grid-cols-3 border-t border-paper/20 sm:mt-8">
                   {[
                     { label: "GitHub", href: profile.links.github },
                     { label: "LinkedIn", href: profile.links.linkedin },
@@ -127,7 +137,7 @@ export function Epilogue() {
                     </li>
                   ))}
                 </ul>
-                <footer className="mono mt-4 flex sm:mt-8 flex-wrap items-center gap-x-6 gap-y-2 text-xs text-graphite">
+                <footer className="mono mt-4 flex sm:mt-8 flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ash">
                   <span>IST {time}</span>
                   <span>
                     © {new Date().getFullYear()} {profile.firstName} {profile.lastName}
